@@ -3,6 +3,8 @@ Tech Fest 2023 - AuroVerse
 ## Description
 This is the official repository for the AuroVerse Tech Fest 2023. This repository contains the source code for the website, the documentation, and the source code for the AuroVerse Web App.
 
+visit deployed site : https://auroverse.vercel.app/
+
 ## Start Developing
 1. Clone the repository
 2. Install dependencies
@@ -60,8 +62,7 @@ The type of commit being made. This can be one of the following:
 - [Framer Motion](https://www.framer.com/motion/)
 
 ##### Hosting
-- [GitHub Pages](https://pages.github.com/)
-- [Netlify](https://www.netlify.com/)
+- [Vercel](https://www.vercel.com/)
 - [Docker](https://www.docker.com/)
 
 
