@@ -7,9 +7,12 @@ import Section3 from "./pages/home/Section3";
 import Section4 from "./pages/home/Section4";
 import Section5 from "./pages/home/Section5";
 import Model from "./components/Model";
+import { Interface } from "./Interface";
 
 function App() {
   const width = window.innerWidth;
+  const [section, setSection] = useState(0);
+
   return (
     <div style={{ height: "100%" }}>
       <Suspense fallback={<ProgressLoader />}>
@@ -22,8 +25,8 @@ function App() {
           <ScrollControls pages={5} damping={0.1}>
             <Model/>
             <Scroll></Scroll>
-            <Scroll
-              html
+            {/* <Scroll
+              html   i k
               style={{
                 height: "100vh",
                 width: width,
@@ -35,6 +38,9 @@ function App() {
               <Section3 />
               <Section4 />
               <Section5 />
+            </Scroll> */}
+            <Scroll html>
+             <Interface setSection={setSection} />
             </Scroll>
           </ScrollControls>
         </Canvas>
