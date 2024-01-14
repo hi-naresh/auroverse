@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 // import { state } from '../../store'
 import { useInView } from 'react-intersection-observer'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+
 
 function Section3() {
   const { ref, inView } = useInView({
@@ -66,8 +68,9 @@ function Section3() {
               Where Innovation Meets Fun - Be There for an Unforgettable Experience! <br /> <strong>Don't Miss the opportunity.</strong>
             </p>
             <button className="myButton" 
-            // style={{}} 
-            // onClick={() => (state.intro = false)}
+              onClick={ () => {
+                window.open("/Register", "_self");
+              }}
             >
               Register Now
             </button>

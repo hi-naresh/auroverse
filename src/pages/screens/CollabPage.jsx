@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
 
-function CollabPage({ isOpen, togglePopup }) {
-    const [scrollHeight] = useState(window.innerHeight)
-    const [scrollWidth] = useState(window.innerWidth)
-    return (
-      <div className={`popup ${isOpen ? 'open' : ''}`}>
-        <div className="popup-content " style={{ height: `${scrollHeight}px`, width: `${scrollWidth}px` }}>
-        <button className="close-button" onClick={togglePopup}>
+function CollabPage({  togglePopup }) {
+  return (
+    <div className={`bg-grad`}>
+      <div
+        className="popup-content dk-bg "
+        style={{ height: `100%`, width: `100%`}}
+      >
+        <button className="close-button" onClick={() => togglePopup()}>
           X
-          </button>
-          <p style={{color:'white'}}>CollabPage</p>
-        </div>
+        </button>
+        <p style={{ color: "white" }}>CollabPage</p>
       </div>
-    )
+    </div>
+  );
   }
   
   export default CollabPage;

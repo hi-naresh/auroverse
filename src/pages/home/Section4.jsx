@@ -36,7 +36,7 @@ function Section4({height}) {
       <section style={{ opacity: inView ? 1 : 0 }}>
     
         <div className="section4" style={{ position: 'relative' }}>
-          <p style={{ position: 'relative',fontStyle: 'italic', textAlign: 'center' }}>Click for more</p>
+          <p style={{ position: 'relative',fontStyle: 'italic',fontWeight:'bold',fontSize:'24px', textAlign: 'center' }}>Click on Screens</p>
             <motion.span
               className="arrow"
               variants={arrowVariants}

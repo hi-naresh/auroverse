@@ -49,9 +49,7 @@ function Section2() {
                   delayChildren: 0
                 }}>
                 <p>
-                  We're a team of passionate individuals who love building amazing web experiences. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat.
+                "Auroverse" at Auro University is an immersive experience that transcends the traditional academic environment. Set to unfold in the second week of April 2023, it invites students from all backgrounds to participate, emphasizing inclusivity and accessibility with guidelines that ensure a smooth experience for everyone. The event promises a variety of contests, workshops, and learning opportunities, with the excitement of competition coupled with the spirit of collaboration. With a commitment to student engagement and development, Auroverse represents a hub where innovation, fun, and learning intersect to create an unforgettable adventure in academia.
                 </p>
               </motion.div>
             </div>
