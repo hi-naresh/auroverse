@@ -13,6 +13,18 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useFrame, useThree } from "@react-three/fiber";
 import { setupDesktopAnimations, setupMobileAnimations } from "./Timeline";
+import ManRef from "./Man";
+
+// import { extend } from "@react-three/fiber";
+// import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
+// import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
+// import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
+// import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass";
+// import { GammaCorrectionShader } from "three/examples/jsm/shaders/GammaCorrectionShader";
+// import * as THREE from "three";
+// import { Vector2 } from "three";
+
+// extend({ EffectComposer, RenderPass, UnrealBloomPass, ShaderPass });
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,12 +38,13 @@ export default function Model({ openPage }) {
   const screen4Ref = useRef();
   const screenRefs = { screen1Ref, screen2Ref, screen3Ref, screen4Ref };
 
-
   const { nodes, materials, animations } = useGLTF("/models/model.glb");
   const { actions } = useAnimations(animations, meshRef);
   const ManTexture = useEnvironment({ files: "/assets/texture.hdr" });
-  const sTexture1 = "/assets/screen3.mp4";
-  const sTexture2 = "/assets/screen4.mp4";
+  const sTexture1 = "/assets/event.mp4";
+  const sTexture2 = "/assets/guide.mp4";
+  const sTexture3 = "/assets/collab.mp4";
+  const sTexture4 = "/assets/team.mp4";
 
   const tweak = useControls({
     roughness: { value: 0.01, min: 0, max: 1 },
@@ -64,7 +77,7 @@ export default function Model({ openPage }) {
     if (isMobile) {
       setupMobileAnimations(tl.current, meshRef, myref, screenRefs);
     } else {
-      setupDesktopAnimations(tl.current, meshRef, myref, screenRefs);
+      setupDesktopAnimations(tl.current, meshRef, myref, manRef, screenRefs);
     }
   }, []);
 
@@ -88,40 +101,13 @@ export default function Model({ openPage }) {
           rotation={[0, 3.2, 0]}
           scale={isMobile ? 2 : 2.5}
         >
-          <group
-            ref={manRef}
-            name="Armature002"
-            position={[0, 2, -4.15]}
-            rotation={[Math.PI / 2, 0, 0]}
-            scale={0}
-          >
-            <primitive object={nodes.mixamorigHips} />
-            <skinnedMesh
-              name="Cube002"
-              geometry={nodes.Cube002.geometry}
-              material={materials["Simple Crystal"]}
-              skeleton={nodes.Cube002.skeleton}
-            >
-              <MeshTransmissionMaterial
-                {...tweak}
-                envMap={ManTexture}
-                color="rgb(150,180,170)"
-                resolution={128}
-                thickness={0.1}
-                anisotropy={2}
-                temporalDistortion={0.1}
-                distortion={5}
-              />
-            </skinnedMesh>
-          </group>
-
+          <ManRef manTexture={ManTexture} tweak={tweak} />
           {/* Screen Elements */}
           <group>
             <mesh
               name="Screen1"
               ref={screen1Ref}
-              onClick={() =>   openPage("EventPage")
-              }
+              onClick={() => openPage("EventPage")}
               onPointerOver={() =>
                 handleInteraction(screen1Ref, "hover", {
                   x: 1.64,
@@ -168,7 +154,7 @@ export default function Model({ openPage }) {
               rotation={[-Math.PI / 2, 0, 0.4]}
               scale={[0, 0, 0]}
             >
-              <VideoMaterial url={sTexture2} />
+              <VideoMaterial url={sTexture3} />
             </mesh>
             <mesh
               name="Screen2"
@@ -194,7 +180,7 @@ export default function Model({ openPage }) {
               rotation={[-Math.PI / 2, 0, -0.41]}
               scale={[0, 0, 0]}
             >
-              <VideoMaterial url={sTexture1} />
+              <VideoMaterial url={sTexture2} />
             </mesh>
             <mesh
               name="screen4"
@@ -220,7 +206,7 @@ export default function Model({ openPage }) {
               rotation={[-Math.PI / 2, 0, -0.41]}
               scale={[0, 0, 0]}
             >
-              <VideoMaterial url={sTexture2} />
+              <VideoMaterial url={sTexture4} />
             </mesh>
           </group>
           <group

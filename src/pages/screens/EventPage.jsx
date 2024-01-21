@@ -12,15 +12,15 @@ const events = [
   {
     title: 'Escape Room Adventure',
     image: "/assets/images/3.jpg",
-    venue: 'Auditorium, AURO University',
-    time: '10:00 AM - 1:00 PM',
+    venue: 'Realisation, AB1',
+    time: '11:00 AM - 1:30 PM',
     fees: '₹200',
     description: 'An immersive puzzle-solving adventure emphasizing teamwork and quick thinking.'
   },
   {
     title: 'Live Trading Simulation',
     image: "/assets/images/1.jpeg", 
-    venue: 'Finance Lab, AURO University',
+    venue: 'Courtyard Area',
     time: '2:00 PM - 5:00 PM',
     fees: '₹150',
     description: 'A mock trading competition to test real-time trading skills with a simulated currency.'
@@ -28,16 +28,16 @@ const events = [
   {
     title: 'Photo Encryption Challenge',
     image:"/assets/images/2.jpg",
-    venue: 'Computer Lab, AURO University',
-    time: '11:00 AM - 12:30 PM',
+    venue: 'Entire Campus',
+    time: '3:00 PM - 4:00 PM',
     fees: '₹100',
     description: 'Decode hidden messages in images using cryptographic techniques.'
   },
   {
     title: 'Aqua Rocket Contest',
     image: "/assets/images/4r.jpeg",
-    venue: 'University Grounds, AURO University',
-    time: '3:00 PM - 6:00 PM',
+    venue: 'Sports Ground',
+    time: '4:00 PM - 6:00 PM',
     fees: '₹150',
     description: 'Design and launch water rockets to achieve the farthest flight.'
   }
@@ -52,12 +52,10 @@ function EventCard({ event }) {
           <h3 className="event-card-header">{event.title}</h3>
           <img src={event.image} alt={event.title} />
         </div>
-        <div className="event-card-back">
-          <ul>
-            <li>Venue: {event.venue}</li>
-            <li>Time: {event.time}</li>
-            <li>Fees: {event.fees}</li>
-          </ul>
+        <div className="event-card-back">  
+          <b>Venue</b> {event.venue}<br/>
+          <b>Time</b> {event.time} <br/>
+          <b>Fees</b> {event.fees}<br/>
           <p>{event.description}</p>
         </div>
       </div>
@@ -69,7 +67,7 @@ function EventPage({ togglePopup }) {
   return (
     <div className={`bg-grad`}>
       <div className="popup-content dk-bg " style={{ height: `100%`, width: `100%` }}>
-        <p style={{ color: "white" }}>Events</p>
+        <h1 style={{ color: "white" }}>Events</h1>
         <div className="events-container">
           {events.map((event, index) => (
             <EventCard key={index} event={event} />

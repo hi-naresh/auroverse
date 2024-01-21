@@ -1,5 +1,6 @@
 // TimelineAnimations.js
 import { gsap } from "gsap";
+import ManRef from "./Man";
 
 export const setupMobileAnimations = (timeline, meshRef, myref, screenRefs) => {
   timeline
@@ -24,13 +25,14 @@ export const setupMobileAnimations = (timeline, meshRef, myref, screenRefs) => {
 
     .to(meshRef.current.rotation, { x: 1.4, y: 0.34, z: -0.9 }, 0.75)
     .to(meshRef.current.position, { y: 1.7 }, 0.75)
-    .to(meshRef.current.scale, { x: 4, y: 4, z: 4 }, 0.75);
+    .to(meshRef.current.scale, { x: 4, y: 4, z: 4 }, 0.75)   
 };
 
 export const setupDesktopAnimations = (
   timeline,
   meshRef,
   myref,
+  manRef,
   screenRefs
 ) => {
   // Add desktop-specific animations here
@@ -60,5 +62,9 @@ export const setupDesktopAnimations = (
 
     .to(meshRef.current.rotation, { x: 1.4, y: 0.34, z: -0.9 }, 0.75)
     .to(meshRef.current.position, { y: 2.8 }, 0.75)
-    .to(meshRef.current.scale, { x: 6.5, y: 6.5, z: 6.5 }, 0.75);
+    .to(meshRef.current.scale, { x: 6.5, y: 6.5, z: 6.5 }, 0.75)
+    .to(screenRefs.screen3Ref.current.scale, { x: 0, y: 0, z: 0 }, 0.75)
+    .to(screenRefs.screen4Ref.current.scale, { x: 0, y: 0, z: 0 }, 0.75)
+    .to(screenRefs.screen2Ref.current.scale, { x: 0, y: 0, z: 0 }, 0.75)
+    .to(screenRefs.screen1Ref.current.scale, { x: 0, y: 0, z: 0 }, 0.75)
 };

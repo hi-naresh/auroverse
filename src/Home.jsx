@@ -100,7 +100,7 @@ function ProgressLoader() {
 
 function Overlay() {
   return (
-    <div className="container">
+    <div className="container" >
       <section>
         <HeroSection />
       </section>

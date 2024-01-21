@@ -1,7 +1,7 @@
 import React from "react";
+import { motion } from 'framer-motion';
 
 function TeamPage({ togglePopup }) {
-  // Dummy data for team members
   const teamMembers = [
     {
       name: "Naresh Jhawar",
@@ -18,35 +18,50 @@ function TeamPage({ togglePopup }) {
       imageUrl: "/assets/images/JD.png",
     },
   ];
+  const containerVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.4,
+        staggerChildren: 0.3
+      }
+    }
+  };
+  
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1 }
+  };
+  
 
   return (
     <div className="bg-grad">
-      <button className="close-button" onClick={togglePopup}>
-        X
-      </button>
-      <div
-        className="popup-content dk-bg"
-        style={{ height: "100%", width: "100%" }}
-      >
-        <p>Meet the Team</p>
-        <div className="team-container">
-          {teamMembers.map((member, index) => (
-            <div key={index} className="team-member">
-              <div className="avatar-container">
-                <img
-                  src={member.imageUrl}
-                  alt={member.name}
-                  className="avatar"
-                />
-              </div>
-              <h3>{member.name}</h3>
-              <p className="role">{member.role}</p>
-              <h4>{member.about}</h4>
-            </div>
-          ))}
-        </div>
-      </div>
+  <button className="close-button" onClick={togglePopup}>X</button>
+  <motion.div
+    initial="hidden"
+    animate="visible"
+    variants={containerVariants}
+    className="popup-content dk-bg"
+    style={{ height: "100%", width: "100%" }}
+  >
+    <h1>Team</h1>
+    <div className="team-container">
+      {teamMembers.map((member, index) => (
+        <motion.div key={index} variants={itemVariants} className="team-member">
+          <div className="avatar-container">
+            <img src={member.imageUrl} alt={member.name} className="avatar" />
+          </div>
+          <h2>{member.name}</h2>
+          <h3 className="role">{member.role}</h3>
+          <p>{member.about}</p>
+        </motion.div>
+      ))}
     </div>
+  </motion.div>
+</div>
+
   );
 }
 

@@ -1,11 +1,11 @@
 // Experience.js
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 import { Html } from "@react-three/drei";
 import EventPage from "../pages/screens/EventPage";
 import TeamPage from "../pages/screens/TeamPage";
 import GuidePage from "../pages/screens/GuidePage";
 import CollabPage from "../pages/screens/CollabPage";
-import Model from './Model';
+import Model from "./Model";
 
 export default function Experience() {
   const meshRef = useRef();
@@ -24,14 +24,20 @@ export default function Experience() {
 
   const getPageComponent = () => {
     switch (currentPage) {
-      case 'EventPage':
-        return <EventPage isOpen={true} togglePopup={() =>openPage} />;
-      case 'TeamPage':
-        return <TeamPage isOpen={true} togglePopup={() => setCurrentPage(null)} />;
-      case 'GuidePage':
-        return <GuidePage isOpen={true} togglePopup={() => setCurrentPage(null)} />;
-      case 'CollabPage':
-        return <CollabPage isOpen={true} togglePopup={() => setCurrentPage(null)} />;
+      case "EventPage":
+        return <EventPage isOpen={true} togglePopup={() => openPage} />;
+      case "TeamPage":
+        return (
+          <TeamPage isOpen={true} togglePopup={() => setCurrentPage(null)} />
+        );
+      case "GuidePage":
+        return (
+          <GuidePage isOpen={true} togglePopup={() => setCurrentPage(null)} />
+        );
+      case "CollabPage":
+        return (
+          <CollabPage isOpen={true} togglePopup={() => setCurrentPage(null)} />
+        );
       default:
         return null;
     }
@@ -39,11 +45,7 @@ export default function Experience() {
 
   return (
     <group>
-      <Model
-        meshRef={meshRef}
-        screenRefs={screenRefs}
-        openPage={openPage}
-      />
+      <Model meshRef={meshRef} screenRefs={screenRefs} openPage={openPage} />
       <Html fullscreen>
         <div
           className="screen-container"
@@ -55,7 +57,6 @@ export default function Experience() {
           }}
         >
           {getPageComponent()}
-          
         </div>
       </Html>
     </group>
