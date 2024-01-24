@@ -17,12 +17,12 @@ function Home({openPage}) {
   return (
     <div className="container" style={{ height: "100%" }}>
       <Suspense fallback={<ProgressLoader />}>
-        <Canvas>          
+        <Canvas pixelRatio={window.devicePixelRatio <= 2 ? window.devicePixelRatio : 2}>
           <Environment background files="/assets/dark_bg.hdr" blur={0.25} />
           <ScrollControls pages={5} damping={0.1}>
             <Experience openPage={openPage} />
             <Scroll html>
-              <Overlay/>
+              <Overlay />
             </Scroll>
           </ScrollControls>
         </Canvas>
@@ -31,7 +31,6 @@ function Home({openPage}) {
   );
 }
 
-// ProgressLoader and Overlay components remain the same
 function ProgressLoader() {
   const { progress } = useProgress();
   const circumference = 2 * Math.PI * 75;

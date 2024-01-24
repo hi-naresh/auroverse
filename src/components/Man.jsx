@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useGLTF, MeshTransmissionMaterial } from "@react-three/drei";
-import { Bloom, EffectComposer } from "@react-three/postprocessing";
+// import { Bloom, EffectComposer } from "@react-three/postprocessing";
 
 export default function ManRef({ manTexture, tweak }) {
   const manRef = useRef();

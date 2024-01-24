@@ -1,5 +1,4 @@
-// Experience.js
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import { Html } from "@react-three/drei";
 import EventPage from "../pages/screens/EventPage";
 import TeamPage from "../pages/screens/TeamPage";
@@ -13,35 +12,26 @@ export default function Experience() {
   const screen2Ref = useRef();
   const screen3Ref = useRef();
   const screen4Ref = useRef();
-  const screenRefs = { screen1Ref, screen2Ref, screen3Ref, screen4Ref };
+  const screenRefs = useMemo(() => ({ screen1Ref, screen2Ref, screen3Ref, screen4Ref }), []);
   const [currentPage, setCurrentPage] = useState(null);
 
-  const openPage = (pageName) => {
-    // setCurrentPage(pageName);
-    //window open in same tab
+  const openPage = useCallback((pageName) => {
     window.open(pageName, "_self");
-  };
-
-  const getPageComponent = () => {
+  }, []);
+  const getPageComponent = useMemo(() => {
     switch (currentPage) {
       case "EventPage":
-        return <EventPage isOpen={true} togglePopup={() => openPage} />;
+        return <EventPage isOpen={true} togglePopup={() => setCurrentPage(null)} />;
       case "TeamPage":
-        return (
-          <TeamPage isOpen={true} togglePopup={() => setCurrentPage(null)} />
-        );
+        return <TeamPage isOpen={true} togglePopup={() => setCurrentPage(null)} />;
       case "GuidePage":
-        return (
-          <GuidePage isOpen={true} togglePopup={() => setCurrentPage(null)} />
-        );
+        return <GuidePage isOpen={true} togglePopup={() => setCurrentPage(null)} />;
       case "CollabPage":
-        return (
-          <CollabPage isOpen={true} togglePopup={() => setCurrentPage(null)} />
-        );
+        return <CollabPage isOpen={true} togglePopup={() => setCurrentPage(null)} />;
       default:
         return null;
     }
-  };
+  }, [currentPage]);
 
   return (
     <group>
@@ -56,7 +46,7 @@ export default function Experience() {
             pointerEvents: "none",
           }}
         >
-          {getPageComponent()}
+          {getPageComponent}
         </div>
       </Html>
     </group>

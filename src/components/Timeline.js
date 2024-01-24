@@ -1,6 +1,4 @@
-// TimelineAnimations.js
 import { gsap } from "gsap";
-import ManRef from "./Man";
 
 export const setupMobileAnimations = (timeline, meshRef, myref, screenRefs) => {
   timeline
@@ -35,8 +33,6 @@ export const setupDesktopAnimations = (
   manRef,
   screenRefs
 ) => {
-  // Add desktop-specific animations here
-  // Example of desktop animations
   timeline
     .to(meshRef.current.scale, { x: 1, y: 1, z: 1 }, 0)
     .to(meshRef.current.position, { x: 0.2, y: 0.4, z: -1 }, 0)

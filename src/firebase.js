@@ -19,5 +19,5 @@ const firebaseConfig = {
   export const storage = firebaseApp.storage();
 
 
-  export { firebase }; // Export firebase
+  export { firebase };
   export default database;

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useLayoutEffect, useState } from "react";
+import React, { useRef, useLayoutEffect } from "react";
 import {
   useGLTF,
   useEnvironment,
@@ -14,17 +14,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useFrame, useThree } from "@react-three/fiber";
 import { setupDesktopAnimations, setupMobileAnimations } from "./Timeline";
 import ManRef from "./Man";
-
-// import { extend } from "@react-three/fiber";
-// import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
-// import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
-// import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
-// import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass";
-// import { GammaCorrectionShader } from "three/examples/jsm/shaders/GammaCorrectionShader";
-// import * as THREE from "three";
-// import { Vector2 } from "three";
-
-// extend({ EffectComposer, RenderPass, UnrealBloomPass, ShaderPass });
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,10 +40,6 @@ export default function Model({ openPage }) {
     metalness: { value: 0.92, min: 0, max: 1 },
   });
 
-  useEffect(() => {
-    actions.pointing.play();
-  }, [actions]);
-
   const scroll = useScroll();
   const tl = useRef();
 
@@ -63,10 +48,11 @@ export default function Model({ openPage }) {
   const isMobile = window.innerWidth <= 480;
 
   useFrame((state, delta) => {
+    actions.pointing.play();
     if (scroll && scroll.offset) {
       tl.current.seek(scroll.offset * tl.current.duration());
     }
-  });
+  }, [actions, scroll]);
 
   useLayoutEffect(() => {
     tl.current = gsap.timeline({
@@ -83,12 +69,9 @@ export default function Model({ openPage }) {
 
   const handleInteraction = (ref, interactionType, scale) => {
     const obj = ref.current;
-    if (obj) {
-      obj.scale.set(scale.x, scale.y, scale.z);
-      if (interactionType === "click") {
-        openPage(obj.name);
+      if (interactionType === "hover") {
+        obj.scale.set(scale.x, scale.y, scale.z);
       }
-    }
   };
 
   return (
